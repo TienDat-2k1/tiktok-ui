@@ -1,5 +1,9 @@
+import classNames from 'classnames/bind';
 import Header from '../Components/Header/Header';
 import Sidebar from './Sidebar/Sidebar';
+import styles from './DefaultLayout.module.scss';
+
+const cx = classNames.bind(styles);
 
 type DefaultLayoutProps = {
   children: JSX.Element;
@@ -7,11 +11,11 @@ type DefaultLayoutProps = {
 
 const DefaultLayout = ({ children }: DefaultLayoutProps) => {
   return (
-    <div>
+    <div className={cx('wrapper')}>
       <Header />
-      <div className="container">
+      <div className={cx('container')}>
         <Sidebar />
-        <div className="content">{children}</div>
+        <div className={cx('content')}>{children}</div>
       </div>
     </div>
   );
