@@ -7,6 +7,7 @@ const cx = classNames.bind(styles);
 type ButtonOwnProps<E extends React.ElementType> = {
   children: React.ReactNode;
   as?: E;
+  className?: string;
   type?: 'primary' | 'outline' | 'text';
   small?: boolean;
   large?: boolean;
@@ -19,22 +20,27 @@ type ButtonOwnProps<E extends React.ElementType> = {
 type ButtonProps<E extends React.ElementType> = ButtonOwnProps<E> &
   Omit<React.ComponentProps<E>, keyof ButtonOwnProps<E>>;
 
-const Button = <E extends React.ElementType = 'button'>({
-  children,
-  as,
-  type,
-  disabled,
-  small,
-  large,
-  rounded,
-  leftIcon,
-  rightIcon,
-  ...otherProps
-}: ButtonProps<E>) => {
+const Button = <E extends React.ElementType = 'button'>(
+  {
+    children,
+    as,
+    className,
+    type,
+    disabled,
+    small,
+    large,
+    rounded,
+    leftIcon,
+    rightIcon,
+    ...otherProps
+  }: ButtonProps<E>,
+  ref: any
+) => {
   const Component = as || 'button';
 
   const classes = cx('wrapper', {
     [type as string]: type,
+    [className as string]: className,
     small,
     large,
     disabled,
@@ -53,11 +59,11 @@ const Button = <E extends React.ElementType = 'button'>({
   }
 
   return (
-    <Component className={`${classes}`} {...otherProps}>
+    <Component className={`${classes}`} {...otherProps} ref={ref}>
       {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
       <span className={cx('title')}>{children}</span>
       {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
     </Component>
   );
 };
-export default Button;
+export default React.forwardRef(Button);

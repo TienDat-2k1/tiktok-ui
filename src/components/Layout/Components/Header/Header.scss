@@ -105,4 +105,16 @@
 }
 
 .actions {
+  display: flex;
+  align-items: center;
+}
+
+.more-btn {
+  font-size: 2rem !important;
+  margin-left: 2px;
+
+  // & > span > svg {
+  //   margin: 0 -24px;
+  //   padding: 0 24px;
+  // }
 }

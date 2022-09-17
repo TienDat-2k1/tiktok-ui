@@ -6,7 +6,10 @@ import {
   faCircleXmark,
   faSpinner,
   faMagnifyingGlass,
-  faSignIn,
+  faEllipsisVertical,
+  faEarthAsia,
+  faCircleQuestion,
+  faKeyboard,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Wrapper as ProperWrapper } from '~/components/Popper';
@@ -14,6 +17,23 @@ import './Header.scss';
 import images from '~/assets/images';
 import AccountItem from '~/components/AccountItem/AccountItem';
 import Button from '~/components/Button/Button';
+import Menu from '~/components/Popper/Menu/Menu';
+
+const MENU_ITEMS = [
+  {
+    icon: <FontAwesomeIcon icon={faEarthAsia} />,
+    title: 'English',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+    title: 'Feedback and help',
+    to: '/feedback',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faKeyboard} />,
+    title: 'Keyboard shortcut',
+  },
+];
 
 const Header = () => {
   const [searchResult, setSearchResult] = useState<number[]>([]);
@@ -73,9 +93,12 @@ const Header = () => {
 
         <div className="actions">
           <Button type="text">upload</Button>
-          <Button type="primary" leftIcon={<FontAwesomeIcon icon={faSignIn} />}>
-            Login
-          </Button>
+          <Button type="primary">Login</Button>
+          <Menu items={MENU_ITEMS}>
+            <Button className="more-btn">
+              <FontAwesomeIcon icon={faEllipsisVertical} />
+            </Button>
+          </Menu>
         </div>
       </div>
     </header>
