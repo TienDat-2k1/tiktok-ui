@@ -23,6 +23,21 @@ const MENU_ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faEarthAsia} />,
     title: 'English',
+    children: {
+      title: 'Language',
+      data: [
+        {
+          type: 'language',
+          code: 'en',
+          title: 'English',
+        },
+        {
+          type: 'language',
+          code: 'vi',
+          title: 'Tiếng Việt',
+        },
+      ],
+    },
   },
   {
     icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -34,6 +49,9 @@ const MENU_ITEMS = [
     title: 'Keyboard shortcut',
   },
 ];
+
+// handler logic
+const headerChangeHandler = (menuItem: any) => {};
 
 const Header = () => {
   const [searchResult, setSearchResult] = useState<number[]>([]);
@@ -94,7 +112,7 @@ const Header = () => {
         <div className="actions">
           <Button type="text">upload</Button>
           <Button type="primary">Login</Button>
-          <Menu items={MENU_ITEMS}>
+          <Menu items={MENU_ITEMS} onChange={headerChangeHandler}>
             <Button className="more-btn">
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </Button>
